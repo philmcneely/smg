@@ -2343,6 +2343,7 @@ mod tests {
     use super::*;
     use crate::worker::{
         circuit_breaker::{CircuitBreakerConfig, CircuitState},
+        metadata::DecodingLabels,
         BasicWorkerBuilder, OverloadThresholds,
     };
 
@@ -3415,6 +3416,7 @@ mod tests {
             pd_pairing: PdPairing::derive(&WorkerSpec::new("http://test:8080")),
             spec: Arc::new(WorkerSpec::new("http://test:8080")),
             redacted_url: "http://test:8080".to_string(),
+            decoding: DecodingLabels::default(),
             health_config: HealthCheckConfig::default(),
             health_endpoint: "/health".to_string(),
             zmq_startup_timeout: Duration::from_secs(600),
@@ -3445,6 +3447,7 @@ mod tests {
             pd_pairing: PdPairing::derive(&spec),
             spec: Arc::new(spec),
             redacted_url: "http://test:8080".to_string(),
+            decoding: DecodingLabels::default(),
             health_config: HealthCheckConfig::default(),
             health_endpoint: "/health".to_string(),
             zmq_startup_timeout: Duration::from_secs(600),
